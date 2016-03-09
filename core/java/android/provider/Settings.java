@@ -4775,6 +4775,27 @@ public final class Settings {
         public static final String SCREENSHOT_SOUND = "screenshot_sound";
 
         /**
+         * Whether touch hovering is enabled on supported hardware
+         * @hide
+         */
+        public static final String FEATURE_TOUCH_HOVERING = "feature_touch_hovering";
+
+        /** @hide */
+        private static final Validator FEATURE_TOUCH_HOVERING_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
+         * Whether the HighTouchSensitivity is activated or not.
+         * 0 = off, 1 = on
+         */
+        public static final String HIGH_TOUCH_SENSITIVITY_ENABLE =
+                "high_touch_sensitivity_enable";
+
+        /** @hide */
+        private static final Validator HIGH_TOUCH_SENSITIVITY_ENABLE_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * IMPORTANT: If you add a new public settings you also have to add it to
          * PUBLIC_SETTINGS below. If the new setting is hidden you have to add
          * it to PRIVATE_SETTINGS below. Also add a validator that can validate
@@ -5352,6 +5373,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(POCKET_JUDGE);
             PRIVATE_SETTINGS.add(LOCKSCREEN_MEDIA_METADATA);
             PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
+            PRIVATE_SETTINGS.add(FEATURE_TOUCH_HOVERING);
+            PRIVATE_SETTINGS.add(HIGH_TOUCH_SENSITIVITY_ENABLE);
         }
 
         /**
@@ -5506,6 +5529,8 @@ public final class Settings {
             VALIDATORS.put(POCKET_JUDGE, POCKET_JUDGE_VALIDATOR);
             VALIDATORS.put(LOCKSCREEN_MEDIA_METADATA, LOCKSCREEN_MEDIA_METADATA_VALIDATOR);
             VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
+            VALIDATORS.put(FEATURE_TOUCH_HOVERING, FEATURE_TOUCH_HOVERING_VALIDATOR);
+            VALIDATORS.put(HIGH_TOUCH_SENSITIVITY_ENABLE, HIGH_TOUCH_SENSITIVITY_ENABLE_VALIDATOR);
         }
 
         /**
