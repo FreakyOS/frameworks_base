@@ -49,6 +49,7 @@ import com.android.systemui.qs.tiles.RotationLockTile;
 import com.android.systemui.qs.tiles.ScreenRecordTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.SoundSearchTile;
+import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.VpnTile;
 import com.android.systemui.qs.tiles.WifiTile;
@@ -91,6 +92,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<CaffeineTile> mCaffeineTileProvider;
     private final Provider<HeadsUpTile> mHeadsUpTileProvider;
     private final Provider<ScreenRecordTile> mScreenRecordTileProvider;
+    private final Provider<SyncTile> mSyncTileProvider;
     private QSTileHost mHost;
 
     @Inject
@@ -117,10 +119,11 @@ public class QSFactoryImpl implements QSFactory {
             Provider<VpnTile> vpnTileProvider,
             Provider<SoundSearchTile> soundSearchTileProvider,
             Provider<MusicTile> musicTileProvider,
-            Provider<AdbOverNetworkTile> adbOverNetworkProvider) {
-            Provider<CaffeineTile> caffeineTileProvider) {
-            Provider<HeadsUpTile> headsUpTileProvider) {
-            Provider<ScreenRecordTile> screenRecordTileProvider) {
+            Provider<AdbOverNetworkTile> adbOverNetworkProvider),
+            Provider<CaffeineTile> caffeineTileProvider),
+            Provider<HeadsUpTile> headsUpTileProvider),
+            Provider<ScreenRecordTile> screenRecordTileProvider),
+            Provider<SyncTile> syncTileProvider)  {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -148,6 +151,7 @@ public class QSFactoryImpl implements QSFactory {
         mCaffeineTileProvider = caffeineTileProvider;
         mHeadsUpTileProvider = headsUpTileProvider;
         mScreenRecordTileProvider = screenRecordTileProvider;
+        mSyncTileProvider = syncTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -218,7 +222,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mHeadsUpTileProvider.get();
             case "screenrecord":
                 return mScreenRecordTileProvider.get();
-        }
+            case "sync":
+                return mSyncTileProvider.get();      }
 
         // Intent tiles.
         if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
