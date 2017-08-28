@@ -3863,4 +3863,12 @@
   <java-symbol type="bool" name="config_automotiveHideNavBarForKeyboard" />
   <java-symbol type="bool" name="reset_geo_fencing_check_after_boot_or_apm" />
   <java-symbol type="bool" name="config_enableAutoSuspend" />
+
+  <!-- Advanced reboot -->
+  <java-symbol type="string" name="reboot_to_recovery_title" />
+  <java-symbol type="string" name="reboot_to_recovery_message" />
+  <java-symbol type="string" name="reboot_to_bootloader_title" />
+  <java-symbol type="string" name="reboot_to_bootloader_message" />
+  <java-symbol type="string" name="reboot_title" />
+  <java-symbol type="string" name="reboot_message" />
 </resources>
