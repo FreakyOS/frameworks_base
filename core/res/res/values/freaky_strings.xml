@@ -11,4 +11,14 @@
 
     <!-- Pocket Lock --> 
     <string name="pocket_lock_message_long_press">Press and hold power button to unlock</string>
+
+    <!-- advanced reboot to bootloader. -->
+    <string name="reboot_to_bootloader_title">Reboot bootloader</string>
+    <string name="reboot_to_bootloader_message">Rebooting to bootloader\u2026</string>
+    <!-- advanced reboot to recovery. -->
+    <string name="reboot_to_recovery_title">Reboot recovery</string>
+    <string name="reboot_to_recovery_message">Rebooting to recovery\u2026</string>
+    <!-- advanced reboot system -->
+    <string name="reboot_system_title">Restart system</string>
+    <string name="reboot_system_message">Restarting system\u2026</string>
 </resources>
