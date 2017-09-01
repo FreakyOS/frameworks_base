@@ -4899,8 +4899,11 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.TINT_QS_TILES),
                     false, this, UserHandle.USER_ALL);
-           resolver.registerContentObserver(Settings.System.getUriFor(
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BACK_GESTURE_HAPTIC),
+                    false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -4914,11 +4917,16 @@ public class StatusBar extends SystemUI implements DemoMode,
                 if (mQSPanel != null) {
                     mQSPanel.getHost().reloadAllTiles();
                 }
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_LOCKSCREEN))) {
+                setLockscreenDoubleTapToSleep();
             }
+            update();
         }
 
         public void update() {
             setHapticFeedbackForBackGesture();
+            setLockscreenDoubleTapToSleep();
         }
     }
 
@@ -4962,6 +4970,12 @@ public class StatusBar extends SystemUI implements DemoMode,
                     mNavigationBarController.onDisplayRemoved(mDisplayId);
                 }
             }
+        }
+    }
+
+    private void setLockscreenDoubleTapToSleep() {
+        if (mStatusBarWindow != null) {
+            mStatusBarWindow.setLockscreenDoubleTapToSleep();
         }
     }
 
