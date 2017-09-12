@@ -7413,6 +7413,11 @@ public class WindowManagerService extends IWindowManager.Stub
         }
 
         @Override
+        public void sendCustomAction(Intent intent) {
+            mPolicy.sendCustomAction(intent);
+        }
+
+        @Override
         public void lockNow() {
             WindowManagerService.this.lockNow(null);
         }
