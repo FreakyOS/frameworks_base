@@ -4303,5 +4303,6 @@
         <item>lockdown</item>
         <item>logout</item>
         <item>screenshot</item>
+	<item>torch</item>
     </string-array>
 </resources>
