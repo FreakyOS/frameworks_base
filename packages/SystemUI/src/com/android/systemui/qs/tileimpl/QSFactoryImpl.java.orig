@@ -39,7 +39,6 @@ import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
-import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.LteTile;
@@ -53,11 +52,13 @@ import com.android.systemui.qs.tiles.ScreenshotTile;
 import com.android.systemui.qs.tiles.UiModeNightTile;
 import com.android.systemui.qs.tiles.SoundSearchTile;
 import com.android.systemui.qs.tiles.SyncTile;
+import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.VpnTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
 import com.android.systemui.qs.tiles.DataSwitchTile;
+import com.android.systemui.qs.tiles.HWKeysTile;
 import com.android.systemui.util.leak.GarbageMonitor;
 
 import javax.inject.Inject;
@@ -100,12 +101,8 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<LteTile> mLteTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
-<<<<<<< HEAD
-=======
-    private final Provider<CompassTile> mCompassTileProvider;
-    private final Provider<FPSInfoTile> mFPSInfoTileProvider;
     private final Provider<HWKeysTile> mHWKeysTileProvider;
->>>>>>> 3a64ab78f75... SystemUI: QS: Add tile for enable/disable HW keys
+    private final Provider<UsbTetherTile> mUsbTetherTileProvider;
 
     private QSTileHost mHost;
 
@@ -141,7 +138,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<SyncTile> syncTileProvider),
             Provider<ScreenshotTile> screenshotTileProvider),
             Provider<LteTile> lteTileProvider),
-            Provider<DataSwitchTile> dataSwitchTileProvider)   {
+            Provider<DataSwitchTile> dataSwitchTileProvider),
+            Provider<HWKeysTile> hWKeysTileProvider)    {
 =======
             Provider<CaffeineTile> caffeineTileProvider,
             Provider<HeadsUpTile> headsUpTileProvider,
@@ -149,8 +147,9 @@ public class QSFactoryImpl implements QSFactory {
             Provider<DataSwitchTile> dataSwitchTileProvider,
             Provider<CompassTile> compassTileProvider,
             Provider<FPSInfoTile> fpsInfoTileProvider,
-            Provider<HWKeysTile> hWKeysTileProvider) {
->>>>>>> 3a64ab78f75... SystemUI: QS: Add tile for enable/disable HW keys
+            Provider<HWKeysTile> hWKeysTileProvider,
+            Provider<UsbTetherTile> usbTetherTileProvider) {
+>>>>>>> 29429a01800... SystemUI: QS: Add USB Tether Tile
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -182,12 +181,8 @@ public class QSFactoryImpl implements QSFactory {
         mScreenshotTileProvider = screenshotTileProvider;
         mLteTileProvider = lteTileProvider;
         mDataSwitchTileProvider = dataSwitchTileProvider;
-<<<<<<< HEAD
-=======
-        mCompassTileProvider = compassTileProvider;
-        mFPSInfoTileProvider = fpsInfoTileProvider;
         mHWKeysTileProvider = hWKeysTileProvider;
->>>>>>> 3a64ab78f75... SystemUI: QS: Add tile for enable/disable HW keys
+        mUsbTetherTileProvider = usbTetherTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -266,15 +261,10 @@ public class QSFactoryImpl implements QSFactory {
                 return mLteTileProvider.get();
             case "dataswitch":
                 return mDataSwitchTileProvider.get();
-<<<<<<< HEAD
-=======
-            case "compass":
-                return mCompassTileProvider.get();
-            case "fpsinfo":
-                return mFPSInfoTileProvider.get();
             case "hwkeys":
                 return mHWKeysTileProvider.get();
->>>>>>> 3a64ab78f75... SystemUI: QS: Add tile for enable/disable HW keys
+            case "usb_tether":
+                return mUsbTetherTileProvider.get();
         }
 
         // Intent tiles.
