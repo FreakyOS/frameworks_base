@@ -30,7 +30,6 @@ import com.android.systemui.qs.tiles.AdbOverNetworkTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
-import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
@@ -57,7 +56,7 @@ import com.android.systemui.qs.tiles.VpnTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
 import com.android.systemui.qs.tiles.DataSwitchTile;
-import com.android.systemui.qs.tiles.HWKeysTile;
+import com.android.systemui.qs.tiles.UsbTetherTile;
 import com.android.systemui.util.leak.GarbageMonitor;
 
 import javax.inject.Inject;
@@ -93,14 +92,13 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<SoundSearchTile> mSoundSearchTileProvider;
     private final Provider<MusicTile> mMusicTileProvider;
     private final Provider<AdbOverNetworkTile> mAdbOverNetworkProvider;
-    private final Provider<CaffeineTile> mCaffeineTileProvider;
     private final Provider<HeadsUpTile> mHeadsUpTileProvider;
     private final Provider<ScreenRecordTile> mScreenRecordTileProvider;
     private final Provider<SyncTile> mSyncTileProvider;
     private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<LteTile> mLteTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
-    private final Provider<HWKeysTile> mHWKeysTileProvider;
+    private final Provider<UsbTetherTile> mUsbTetherTileProvider;
 
     private QSTileHost mHost;
 
@@ -129,14 +127,13 @@ public class QSFactoryImpl implements QSFactory {
             Provider<SoundSearchTile> soundSearchTileProvider,
             Provider<MusicTile> musicTileProvider,
             Provider<AdbOverNetworkTile> adbOverNetworkProvider),
-            Provider<CaffeineTile> caffeineTileProvider),
-            Provider<HeadsUpTile> headsUpTileProvider),
-            Provider<ScreenRecordTile> screenRecordTileProvider),
-            Provider<SyncTile> syncTileProvider),
-            Provider<ScreenshotTile> screenshotTileProvider),
-            Provider<LteTile> lteTileProvider),
-            Provider<DataSwitchTile> dataSwitchTileProvider),
-            Provider<HWKeysTile> hWKeysTileProvider)    {
+            Provider<HeadsUpTile> headsUpTileProvider,
+            Provider<ScreenRecordTile> screenRecordTileProvider,
+            Provider<SyncTile> syncTileProvider,
+            Provider<ScreenshotTile> screenshotTileProvider,
+            Provider<LteTile> lteTileProvider,
+            Provider<DataSwitchTile> dataSwitchTileProvider,
+            Provider<UsbTetherTile> usbTetherTileProvider)  {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -169,6 +166,7 @@ public class QSFactoryImpl implements QSFactory {
         mLteTileProvider = lteTileProvider;
         mDataSwitchTileProvider = dataSwitchTileProvider;
         mHWKeysTileProvider = hWKeysTileProvider;
+        mUsbTetherTileProvider = usbTetherTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -233,8 +231,6 @@ public class QSFactoryImpl implements QSFactory {
                 return mMusicTileProvider.get();
             case "adb_network":
                 return mAdbOverNetworkProvider.get();
-            case "caffeine":
-                return mCaffeineTileProvider.get();
             case "heads_up":
                 return mHeadsUpTileProvider.get();
             case "screenrecord":
@@ -247,8 +243,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mLteTileProvider.get();
             case "dataswitch":
                 return mDataSwitchTileProvider.get();
-            case "hwkeys":
-                return mHWKeysTileProvider.get();
+            case "usb_tether":
+                return mUsbTetherTileProvider.get();
         }
 
         // Intent tiles.
