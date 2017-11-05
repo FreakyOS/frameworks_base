@@ -40,6 +40,7 @@ import com.android.systemui.qs.tiles.FPSInfoTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
+import com.android.systemui.qs.tiles.LiveDisplayTile;
 import com.android.systemui.qs.tiles.LocationTile;
 import com.android.systemui.qs.tiles.LteTile;
 import com.android.systemui.qs.tiles.MusicTile;
@@ -101,6 +102,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<UsbTetherTile> mUsbTetherTileProvider;
     private final Provider<FPSInfoTile> mFPSInfoTileProvider;
+    private final Provider<LiveDisplayTile> mLiveDisplayTileProvider;
 
     private QSTileHost mHost;
 
@@ -136,7 +138,8 @@ public class QSFactoryImpl implements QSFactory {
 		    Provider<LteTile> lteTileProvider,
 		    Provider<DataSwitchTile> dataSwitchTileProvider,
 		    Provider<UsbTetherTile> usbTetherTileProvider,
-		    Provider<FPSInfoTile> fpsInfoTileProvider) {
+		    Provider<FPSInfoTile> fpsInfoTileProvider,
+                    Provider<LiveDisplayTile> liveDisplayTileProvider) {
 		mWifiTileProvider = wifiTileProvider;
 		mBluetoothTileProvider = bluetoothTileProvider;
 		mCellularTileProvider = cellularTileProvider;
@@ -169,6 +172,7 @@ public class QSFactoryImpl implements QSFactory {
 		mDataSwitchTileProvider = dataSwitchTileProvider;
 		mUsbTetherTileProvider = usbTetherTileProvider;
 		mFPSInfoTileProvider = fpsInfoTileProvider;
+                mLiveDisplayTileProvider = liveDisplayTileProvider;
 	    }
 
     public void setHost(QSTileHost host) {
@@ -249,6 +253,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mUsbTetherTileProvider.get();
             case "fpsinfo":
                 return mFPSInfoTileProvider.get();
+            case "livedisplay":
+                return mLiveDisplayTileProvider.get();
         }
 
         // Intent tiles.
