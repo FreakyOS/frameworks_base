@@ -30,6 +30,7 @@ import com.android.systemui.qs.tiles.AdbOverNetworkTile;
 import com.android.systemui.qs.tiles.AirplaneModeTile;
 import com.android.systemui.qs.tiles.BatterySaverTile;
 import com.android.systemui.qs.tiles.BluetoothTile;
+import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
@@ -101,6 +102,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<UsbTetherTile> mUsbTetherTileProvider;
     private final Provider<FPSInfoTile> mFPSInfoTileProvider;
+    private final Provider<CaffeineTile> mCaffeineTileProvider;
 
     private QSTileHost mHost;
 
@@ -132,11 +134,12 @@ public class QSFactoryImpl implements QSFactory {
             Provider<HeadsUpTile> headsUpTileProvider,
             Provider<ScreenRecordTile> screenRecordTileProvider,
             Provider<SyncTile> syncTileProvider,
-		    Provider<ScreenshotTile> screenshotTileProvider,
-		    Provider<LteTile> lteTileProvider,
-		    Provider<DataSwitchTile> dataSwitchTileProvider,
-		    Provider<UsbTetherTile> usbTetherTileProvider,
-		    Provider<FPSInfoTile> fpsInfoTileProvider) {
+	    Provider<ScreenshotTile> screenshotTileProvider,
+	    Provider<LteTile> lteTileProvider,
+	    Provider<DataSwitchTile> dataSwitchTileProvider,
+	    Provider<UsbTetherTile> usbTetherTileProvider,
+	    Provider<FPSInfoTile> fpsInfoTileProvider,
+            Provider<CaffeineTile> caffeineTileProvider) {
 		mWifiTileProvider = wifiTileProvider;
 		mBluetoothTileProvider = bluetoothTileProvider;
 		mCellularTileProvider = cellularTileProvider;
@@ -169,6 +172,7 @@ public class QSFactoryImpl implements QSFactory {
 		mDataSwitchTileProvider = dataSwitchTileProvider;
 		mUsbTetherTileProvider = usbTetherTileProvider;
 		mFPSInfoTileProvider = fpsInfoTileProvider;
+	        mCaffeineTileProvider = caffeineTileProvider;
 	    }
 
     public void setHost(QSTileHost host) {
@@ -249,6 +253,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mUsbTetherTileProvider.get();
             case "fpsinfo":
                 return mFPSInfoTileProvider.get();
+            case "caffeine":
+                return mCaffeineTileProvider.get();
         }
 
         // Intent tiles.
