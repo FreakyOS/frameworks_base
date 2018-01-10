@@ -266,4 +266,7 @@
     <!-- Whether device uses linear screen brightness slider -->
     <bool name="config_linearBrightnessSlider">false</bool>
 
+    <!-- Timer in ms to trigger the proximity timeout on flashlight -->
+    <integer name="config_flashlightProximityTimeout">300</integer>
+
 </resources>
