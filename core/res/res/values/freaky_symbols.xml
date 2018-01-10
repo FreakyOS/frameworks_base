@@ -136,4 +136,7 @@
     <java-symbol type="string" name="config_headlineFontFamilyMedium" />
     <java-symbol type="string" name="config_bodyFontFamily" />
     <java-symbol type="string" name="config_bodyFontFamilyMedium" />
+
+    <!-- Timer in ms to trigger the proximity timeout on flashlight -->
+    <java-symbol type="integer" name="config_flashlightProximityTimeout" />
 </resources>
