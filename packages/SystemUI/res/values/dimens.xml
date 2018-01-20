@@ -1162,4 +1162,6 @@
     <dimen name="dismiss_all_button_width">55dp</dimen>
     <dimen name="dismiss_all_fab_src_size">24dp</dimen>
 
+    <!-- Largest size an avatar might need to be drawn in the power menu user picker -->
+    <dimen name="global_actions_avatar_size">24dp</dimen>
 </resources>

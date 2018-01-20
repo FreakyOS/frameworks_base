@@ -9803,6 +9803,19 @@ public final class Settings {
          */
         public static final String FACE_UNLOCK_ALWAYS_REQUIRE_SWIPE = "face_unlock_always_require_swipe";
 
+
+        /**
+         * Whether to include options in power menu for rebooting into recovery or bootloader
+         * @hide
+         */
+        public static final String ADVANCED_REBOOT = "advanced_reboot";
+
+        /**
+         * String to contain power menu actions
+         * @hide
+         */
+        public static final String POWER_MENU_ACTIONS = "power_menu_actions";
+
         /**
          * This are the settings to be backed up.
          *
