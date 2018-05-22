@@ -90,6 +90,8 @@ public class QSPanel extends LinearLayout implements Tunable, Callback,
 
     private View mDivider;
 
+    private int mBrightnessSlider = 1;
+
     public QSPanel(Context context) {
         this(context, null);
     }
@@ -109,19 +111,39 @@ public class QSPanel extends LinearLayout implements Tunable, Callback,
         mTileLayout = (QSTileLayout) LayoutInflater.from(mContext).inflate(
                 R.layout.qs_paged_tile_layout, this, false);
         mTileLayout.setListening(mListening);
-        addView((View) mTileLayout);
+        updateSettings();
 
         mQsTileRevealController = new QSTileRevealController(mContext, this,
                 (PagedTileLayout) mTileLayout);
 
-        addDivider();
-
         mFooter = new QSSecurityFooter(this, context);
-        addView(mFooter.getView());
 
-        updateResources();
+        addQSPanel();
 
         mDumpController = dumpController;
+    }
+
+    private void addQSPanel() {
+        if (mBrightnessSlider == 1) {
+            addView(mBrightnessView);
+            addView((View) mTileLayout);
+        } else {
+            addView((View) mTileLayout);
+            addView(mBrightnessView);
+        }
+
+        addDivider();
+        addView(mFooter.getView());
+        updateResources();
+    }
+
+    private void restartQSPanel() {
+        if (mFooter.getView() != null) removeView(mFooter.getView());
+        if (mDivider != null) removeView(mDivider);
+        if ((View) mTileLayout != null) removeView((View) mTileLayout);
+        if (mBrightnessView != null) removeView(mBrightnessView);
+
+        addQSPanel();
     }
 
     protected void addDivider() {
@@ -192,7 +214,13 @@ public class QSPanel extends LinearLayout implements Tunable, Callback,
 
     @Override
     public void onTuningChanged(String key, String newValue) {
-        // Do nothing
+        if (QS_SHOW_AUTO_BRIGHTNESS.equals(key) && mIsAutomaticBrightnessAvailable) {
+            updateViewVisibilityForTuningValue(mAutoBrightnessView, newValue);
+        } else if (QS_SHOW_BRIGHTNESS_SLIDER.equals(key)) {
+            mBrightnessSlider = TunerService.parseInteger(newValue, 1);
+            mBrightnessView.setVisibility(mBrightnessSlider != 0 ? VISIBLE : GONE);
+            restartQSPanel();
+        }
     }
 
     private void updateViewVisibilityForTuningValue(View view, @Nullable String newValue) {
