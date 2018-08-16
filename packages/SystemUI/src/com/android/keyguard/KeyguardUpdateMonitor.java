@@ -27,6 +27,7 @@ import static android.os.BatteryManager.EXTRA_LEVEL;
 import static android.os.BatteryManager.EXTRA_MAX_CHARGING_CURRENT;
 import static android.os.BatteryManager.EXTRA_MAX_CHARGING_VOLTAGE;
 import static android.os.BatteryManager.EXTRA_OEM_FAST_CHARGER;
+import static android.os.BatteryManager.EXTRA_TEMPERATURE;
 import static android.os.BatteryManager.EXTRA_PLUGGED;
 import static android.os.BatteryManager.EXTRA_STATUS;
 import static android.telephony.PhoneStateListener.LISTEN_ACTIVE_DATA_SUBSCRIPTION_ID_CHANGE;
@@ -1088,6 +1089,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
                 final int maxChargingMicroAmp = intent.getIntExtra(EXTRA_MAX_CHARGING_CURRENT, -1);
                 int maxChargingMicroVolt = intent.getIntExtra(EXTRA_MAX_CHARGING_VOLTAGE, -1);
                 final int maxChargingMicroWatt;
+                final int temperature = intent.getIntExtra(EXTRA_TEMPERATURE, -1);;
 
                 if (maxChargingMicroVolt <= 0) {
                     maxChargingMicroVolt = DEFAULT_CHARGING_VOLTAGE_MICRO_VOLT;
@@ -1104,7 +1106,8 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
                         EXTRA_OEM_FAST_CHARGER, false);
                 final Message msg = mHandler.obtainMessage(
                         MSG_BATTERY_UPDATE, new BatteryStatus(status, level, plugged, health,
-                                maxChargingMicroWatt, oemFastChargeStatus));
+                                maxChargingMicroAmp, maxChargingMicroVolt, maxChargingMicroWatt,
+                                temperature));
                 mHandler.sendMessage(msg);
             } else if (TelephonyIntents.ACTION_SIM_STATE_CHANGED.equals(action)) {
                 SimData args = SimData.fromIntent(intent);
@@ -1347,16 +1350,23 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         public final int level;
         public final int plugged;
         public final int health;
+        public final int maxChargingCurrent;
+        public final int maxChargingVoltage;
         public final int maxChargingWattage;
         public final boolean oemFastChargeStatus;
+        public final int temperature;
         public BatteryStatus(int status, int level, int plugged, int health,
-                int maxChargingWattage, boolean oemFastChargeStatus) {
+                int maxChargingCurrent, int maxChargingVoltage, int maxChargingWattage,
+                int temperature) {
             this.status = status;
             this.level = level;
             this.plugged = plugged;
             this.health = health;
+            this.maxChargingCurrent = maxChargingCurrent;
+            this.maxChargingVoltage = maxChargingVoltage;
             this.maxChargingWattage = maxChargingWattage;
             this.oemFastChargeStatus = oemFastChargeStatus;
+            this.temperature = temperature;
         }
 
         /**
@@ -1557,7 +1567,7 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         }
 
         // Take a guess at initial SIM state, battery status and PLMN until we get an update
-        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, false);
+        mBatteryStatus = new BatteryStatus(BATTERY_STATUS_UNKNOWN, 100, 0, 0, 0, 0 ,0, 0);
 
         // Watch for interesting updates
         final IntentFilter filter = new IntentFilter();
@@ -2772,3 +2782,4 @@ public class KeyguardUpdateMonitor implements TrustManager.TrustListener {
         return mPulsing;
     }
 }
+
