@@ -247,6 +247,7 @@ import com.android.systemui.statusbar.policy.ZenModeController;
 import com.android.systemui.tuner.TunerService;
 import com.android.systemui.util.InjectionInflationController;
 import com.android.systemui.volume.VolumeComponent;
+import com.android.internal.util.custom.FreakyUtils;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -4899,8 +4900,11 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.TINT_QS_TILES),
                     false, this, UserHandle.USER_ALL);
-           resolver.registerContentObserver(Settings.System.getUriFor(
+            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BACK_GESTURE_HAPTIC),
+                    false, this, UserHandle.USER_ALL);
+	    resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SWITCH_STYLE),
                     false, this, UserHandle.USER_ALL);
         }
 
@@ -4914,6 +4918,10 @@ public class StatusBar extends SystemUI implements DemoMode,
                 if (mQSPanel != null) {
                     mQSPanel.getHost().reloadAllTiles();
                 }
+            }else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.SWITCH_STYLE))) {
+                stockSwitchStyle();
+                updateSwitchStyle();
             }
         }
 
@@ -4973,5 +4981,16 @@ public class StatusBar extends SystemUI implements DemoMode,
     public @TransitionMode int getStatusBarMode() {
         return mStatusBarMode;
     }
+
+    public void updateSwitchStyle() {
+        int switchStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
+                Settings.System.SWITCH_STYLE, 0, mLockscreenUserManager.getCurrentUserId());
+        Utils.updateSwitchStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId(), switchStyle);
+    }
+
+    public void stockSwitchStyle() {
+        Utils.stockSwitchStyle(mOverlayManager, mLockscreenUserManager.getCurrentUserId());
+    }
+
 
 }
