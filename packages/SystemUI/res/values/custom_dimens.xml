@@ -53,8 +53,10 @@
     <dimen name="keyguard_charging_indication_height">60dp</dimen>
     <dimen name="keyguard_charging_indication_width">32dp</dimen>
 
-	<!-- OmniStyle custom headers -->
-    <dimen name="qs_header_image_offset">0dp</dimen>
-    <dimen name="qs_header_image_side_margin">0dp</dimen>
+    <!-- OmniStyle custom headers -->
+    <dimen name="qs_header_image_offset">1dp</dimen>
+    <dimen name="qs_header_image_top_margin">1dp</dimen>
+    <dimen name="qs_header_image_side_margin">8dp</dimen>
+    <dimen name="qs_header_image_bottom_margin">0dp</dimen>
 
 </resources>
