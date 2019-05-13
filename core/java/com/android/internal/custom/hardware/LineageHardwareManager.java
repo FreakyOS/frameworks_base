@@ -23,6 +23,7 @@ import android.os.RemoteException;
 import android.os.ServiceManager;
 import android.util.Log;
 
+import com.android.internal.R;
 import com.android.internal.annotations.VisibleForTesting;
 
 import com.android.internal.custom.app.LineageContextConstants;
@@ -146,7 +147,8 @@ public final class LineageHardwareManager {
      * @return true if the feature is supported, false otherwise.
      */
     public boolean isSupported(int feature) {
-        return isSupportedHIDL(feature) || isSupportedLegacy(feature);
+        return (isSupportedHIDL(feature) || isSupportedLegacy(feature)) &&
+            mContext.getResources().getBoolean(R.bool.config_liveDisplayAvailable);
     }
 
     private boolean isSupportedHIDL(int feature) {
