@@ -3882,6 +3882,35 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
     };
 
+    private SbSettingsObserver mSbSettingsObserver = new SbSettingsObserver(mHandler);
+    private class SbSettingsObserver extends ContentObserver {
+        SbSettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_GESTURE),
+                    false, this, UserHandle.USER_ALL);
+        }
+
+        @Override
+        public void onChange(boolean selfChange, Uri uri) {
+            update();
+        }
+
+        public void update() {
+            setStatusDoubleTapToSleep();
+        }
+    }
+
+    private void setStatusDoubleTapToSleep() {
+        if (mStatusBarWindow != null) {
+            mStatusBarWindow.updateSettings();
+        }
+    }
+
     public int getWakefulnessState() {
         return mWakefulnessLifecycle.getWakefulness();
     }
