@@ -5133,6 +5133,13 @@ public final class Settings {
          */
         public static final String ROAMING_INDICATOR_ICON = "roaming_indicator_icon";
 
+        /** @hide */
+        public static final String BACK_GESTURE_HEIGHT = "back_gesture_height";
+
+        /** @hide */
+        private static final Validator BACK_GESTURE_HEIGHT_VALIDATOR =
+                ANY_INTEGER_VALIDATOR;
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -5402,6 +5409,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK);
             PRIVATE_SETTINGS.add(FEATURE_TOUCH_HOVERING);
             PRIVATE_SETTINGS.add(HIGH_TOUCH_SENSITIVITY_ENABLE);
+            PRIVATE_SETTINGS.add(BACK_GESTURE_HEIGHT);
         }
 
         /**
@@ -5559,6 +5567,7 @@ public final class Settings {
             VALIDATORS.put(TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK, TOUCHSCREEN_GESTURE_HAPTIC_FEEDBACK_VALIDATOR);
             VALIDATORS.put(FEATURE_TOUCH_HOVERING, FEATURE_TOUCH_HOVERING_VALIDATOR);
             VALIDATORS.put(HIGH_TOUCH_SENSITIVITY_ENABLE, HIGH_TOUCH_SENSITIVITY_ENABLE_VALIDATOR);
+            VALIDATORS.put(BACK_GESTURE_HEIGHT, BACK_GESTURE_HEIGHT_VALIDATOR);
         }
 
         /**
