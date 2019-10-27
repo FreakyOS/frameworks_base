@@ -147,6 +147,12 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.STATUS_BAR_CUSTOM_HEADER), false,
                     this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QS_BATTERY_MODE), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.STATUS_BAR_BATTERY_STYLE), false,
+                    this, UserHandle.USER_ALL);
             }
 
         @Override
@@ -230,9 +236,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mBatteryRemainingIcon.updateColors(fillColorWhite, fillColorWhite, fillColorWhite);
         // Don't need to worry about tuner settings for this icon
         mBatteryRemainingIcon.setIgnoreTunerUpdates(true);
-        // QS will always show the estimate, and BatteryMeterView handles the case where
-        // it's unavailable or charging
-        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
         mRingerModeTextView.setSelected(true);
         mNextAlarmTextView.setSelected(true);
         updateSettings();
@@ -586,9 +590,39 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mHeaderImageEnabled = Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.STATUS_BAR_CUSTOM_HEADER, 0,
                 UserHandle.USER_CURRENT) == 1;
+        updateQSBatteryMode();
+        updateSBBatteryStyle();
         updateResources();
         updateStatusbarProperties();
     }
+
+     private void updateQSBatteryMode() {
+        int showEstimate = Settings.System.getInt(mContext.getContentResolver(),
+        Settings.System.QS_BATTERY_MODE, 0);
+        if (showEstimate == 0) {
+            mBatteryRemainingIcon.mShowBatteryPercent = 0;
+            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
+        } else if (showEstimate == 1) {
+            mBatteryRemainingIcon.mShowBatteryPercent = 0;
+            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ON);
+        } else if (showEstimate == 2) {
+            mBatteryRemainingIcon.mShowBatteryPercent = 1;
+            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_OFF);
+        } else if (showEstimate == 3) {
+            mBatteryRemainingIcon.mShowBatteryPercent = 0;
+            mBatteryRemainingIcon.setPercentShowMode(BatteryMeterView.MODE_ESTIMATE);
+        }
+        mBatteryRemainingIcon.updatePercentView();
+        mBatteryRemainingIcon.updateVisibility();
+     }
+
+     private void updateSBBatteryStyle() {
+        mBatteryRemainingIcon.mBatteryStyle = Settings.System.getInt(mContext.getContentResolver(),
+        Settings.System.STATUS_BAR_BATTERY_STYLE, 0);
+        mBatteryRemainingIcon.updateBatteryStyle();
+        mBatteryRemainingIcon.updatePercentView();
+        mBatteryRemainingIcon.updateVisibility();
+     }
 
     // Update color schemes in landscape to use wallpaperTextColor
     private void updateStatusbarProperties() {
