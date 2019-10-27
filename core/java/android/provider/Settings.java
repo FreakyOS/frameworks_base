@@ -5292,6 +5292,42 @@ public final class Settings {
         public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 
         /**
+         * Whether the user has already accepted MediaProjection permission for the built-in screenrecorder
+         * @hide
+         */
+        public static final String MEDIAPROJECTION_SYSUI_OK = "mediaprojection_sysui_ok";
+
+        /**
+         * Screenrecord: low quality
+         * @hide
+         */
+        public static final String SCREENRECORD_LOW_QUALITY = "screenrecord_low_quality";
+
+        /**
+         * Screenrecord: audio source
+         * @hide
+         */
+        public static final String SCREENRECORD_AUDIO_SOURCE = "screenrecord_audio_source";
+
+        /**
+         * Screenrecord: show taps
+         * @hide
+         */
+        public static final String SCREENRECORD_SHOW_TAPS = "screenrecord_show_taps";
+
+        /**
+         * Screenrecord: show stop dot
+         * @hide
+         */
+        public static final String SCREENRECORD_STOP_DOT = "screenrecord_stop_dot";
+
+        /**
+         * Screenrecord: video bitrate
+         * @hide
+         */
+        public static final String SCREENRECORD_VIDEO_BITRATE = "screenrecord_video_bitrate";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
