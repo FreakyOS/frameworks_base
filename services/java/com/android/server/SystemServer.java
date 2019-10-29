@@ -330,6 +330,8 @@ public final class SystemServer {
     private Future<?> mSensorServiceStart;
     private Future<?> mZygotePreload;
 
+    public boolean safeMode = false;
+
     private class AdbPortObserver extends ContentObserver {
         public AdbPortObserver() {
             super(null);
@@ -346,6 +348,7 @@ public final class SystemServer {
             }
         }
     }
+
 
     /**
      * Start the sensor service. This is a blocking call and can take time.
@@ -1113,7 +1116,10 @@ public final class SystemServer {
 
         // Before things start rolling, be sure we have decided whether
         // we are in safe mode.
-        final boolean safeMode = wm.detectSafeMode();
+
+        if(wm != null) {
+            safeMode = wm.detectSafeMode();
+        }
         if (safeMode) {
             // If yes, immediately turn on the global setting for airplane mode.
             // Note that this does not send broadcasts at this stage because
@@ -1843,6 +1849,7 @@ public final class SystemServer {
 
             traceBeginAndSlog("StartCrossProfileAppsService");
             mSystemServiceManager.startService(CrossProfileAppsService.class);
+            traceEnd();
 
             traceBeginAndSlog("StartPocketService");
             mSystemServiceManager.startService(PocketService.class);
