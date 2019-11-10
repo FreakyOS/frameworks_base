@@ -63,6 +63,7 @@ LOCAL_REQUIRED_MODULES := \
 	DisplayCutoutEmulationTallOverlay \
 	FontArbutusSourceOverlay \
 	FontArvoLatoOverlay \
+	FontGoogleSansOverlay \
 	FontRubikRubikOverlay \
         FontSlateForOnePlusOverlay \
 	IconPackCircularAndroidOverlay \
