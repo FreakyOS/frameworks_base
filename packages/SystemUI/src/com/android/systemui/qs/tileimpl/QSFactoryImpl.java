@@ -55,6 +55,7 @@ import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.VpnTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
+import com.android.systemui.qs.tiles.DataSwitchTile;
 import com.android.systemui.util.leak.GarbageMonitor;
 
 import javax.inject.Inject;
@@ -95,6 +96,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<SyncTile> mSyncTileProvider;
     private final Provider<ScreenshotTile> mScreenshotTileProvider;
     private final Provider<LteTile> mLteTileProvider;
+    private final Provider<DataSwitchTile> mDataSwitchTileProvider;
 
     private QSTileHost mHost;
 
@@ -127,7 +129,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<ScreenRecordTile> screenRecordTileProvider,
             Provider<SyncTile> syncTileProvider,
             Provider<ScreenshotTile> screenshotTileProvider,
-            Provider<LteTile> lteTileProvider) {
+            Provider<LteTile> lteTileProvider,
+            Provider<DataSwitchTile> dataSwitchTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -157,6 +160,7 @@ public class QSFactoryImpl implements QSFactory {
         mSyncTileProvider = syncTileProvider;
         mScreenshotTileProvider = screenshotTileProvider;
         mLteTileProvider = lteTileProvider;
+        mDataSwitchTileProvider = dataSwitchTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -230,7 +234,9 @@ public class QSFactoryImpl implements QSFactory {
             case "screenshot":
                 return mScreenshotTileProvider.get();
             case "lte":
-                return mLteTileProvider.get();        
+                return mLteTileProvider.get();       
+            case "dataswitch":
+                return mDataSwitchTileProvider.get();
 	}
 
         // Intent tiles.
