@@ -93,6 +93,7 @@ LOCAL_REQUIRED_MODULES := \
         IconShapePebbleOverlay \
         IconShapeTaperedRectOverlay \
         IconShapeVesselOverlay \
+        PrimaryColorAOSiPBlackOverlay \
 	NavigationBarMode3ButtonOverlay \
 	NavigationBarMode2ButtonOverlay \
 	NavigationBarModeGesturalOverlay \
