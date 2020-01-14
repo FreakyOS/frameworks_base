@@ -121,7 +121,7 @@ public class SamsungHighlightClockController implements ClockPlugin {
 
     @Override
     public Bitmap getThumbnail() {
-        return BitmapFactory.decodeResource(mResources, R.drawable.samsung_bold_thumbnail);
+        return BitmapFactory.decodeResource(mResources, R.drawable.samsung_thumbnail);
     }
 
     @Override
