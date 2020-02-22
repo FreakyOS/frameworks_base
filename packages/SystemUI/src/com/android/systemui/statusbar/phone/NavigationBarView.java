@@ -852,6 +852,11 @@ public class NavigationBarView extends FrameLayout implements
         }
     }
 
+   
+   public void updateBackGestureHaptic() {
+        mEdgeBackGestureHandler.setStateForBackGestureHaptic();
+    }
+
     public void setAccessibilityButtonState(final boolean visible, final boolean longClickable) {
         mLongClickableAccessibilityButton = longClickable;
         getAccessibilityButton().setLongClickable(longClickable);
