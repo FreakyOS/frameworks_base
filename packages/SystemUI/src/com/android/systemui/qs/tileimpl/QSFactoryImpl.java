@@ -36,6 +36,7 @@ import com.android.systemui.qs.tiles.ColorInversionTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
+import com.android.systemui.qs.tiles.FPSInfoTile;
 import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
@@ -99,6 +100,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<LteTile> mLteTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
     private final Provider<UsbTetherTile> mUsbTetherTileProvider;
+    private final Provider<FPSInfoTile> mFPSInfoTileProvider;
 
     private QSTileHost mHost;
 
@@ -130,42 +132,44 @@ public class QSFactoryImpl implements QSFactory {
             Provider<HeadsUpTile> headsUpTileProvider,
             Provider<ScreenRecordTile> screenRecordTileProvider,
             Provider<SyncTile> syncTileProvider,
-            Provider<ScreenshotTile> screenshotTileProvider,
-            Provider<LteTile> lteTileProvider,
-            Provider<DataSwitchTile> dataSwitchTileProvider,
-            Provider<UsbTetherTile> usbTetherTileProvider) {
-        mWifiTileProvider = wifiTileProvider;
-        mBluetoothTileProvider = bluetoothTileProvider;
-        mCellularTileProvider = cellularTileProvider;
-        mDndTileProvider = dndTileProvider;
-        mColorInversionTileProvider = colorInversionTileProvider;
-        mAirplaneModeTileProvider = airplaneModeTileProvider;
-        mWorkModeTileProvider = workModeTileProvider;
-        mRotationLockTileProvider = rotationLockTileProvider;
-        mFlashlightTileProvider = flashlightTileProvider;
-        mLocationTileProvider = locationTileProvider;
-        mCastTileProvider = castTileProvider;
-        mHotspotTileProvider = hotspotTileProvider;
-        mUserTileProvider = userTileProvider;
-        mBatterySaverTileProvider = batterySaverTileProvider;
-        mDataSaverTileProvider = dataSaverTileProvider;
-        mNightDisplayTileProvider = nightDisplayTileProvider;
-        mNfcTileProvider = nfcTileProvider;
-        mMemoryTileProvider = memoryTileProvider;
-        mUiModeNightTileProvider = uiModeNightTileProvider;
-        mPowerShareTileProvider = powerShareTileProvider;
-        mVpnTileProvider = vpnTileProvider;
-        mSoundSearchTileProvider = soundSearchTileProvider;
-        mMusicTileProvider = musicTileProvider;
-        mAdbOverNetworkProvider = adbOverNetworkProvider;
-        mHeadsUpTileProvider = headsUpTileProvider;
-        mScreenRecordTileProvider = screenRecordTileProvider;
-        mSyncTileProvider = syncTileProvider;
-        mScreenshotTileProvider = screenshotTileProvider;
-        mLteTileProvider = lteTileProvider;
-        mDataSwitchTileProvider = dataSwitchTileProvider;
-        mUsbTetherTileProvider = usbTetherTileProvider;
-    }
+		    Provider<ScreenshotTile> screenshotTileProvider,
+		    Provider<LteTile> lteTileProvider,
+		    Provider<DataSwitchTile> dataSwitchTileProvider,
+		    Provider<UsbTetherTile> usbTetherTileProvider,
+		    Provider<FPSInfoTile> fpsInfoTileProvider) {
+		mWifiTileProvider = wifiTileProvider;
+		mBluetoothTileProvider = bluetoothTileProvider;
+		mCellularTileProvider = cellularTileProvider;
+		mDndTileProvider = dndTileProvider;
+		mColorInversionTileProvider = colorInversionTileProvider;
+		mAirplaneModeTileProvider = airplaneModeTileProvider;
+		mWorkModeTileProvider = workModeTileProvider;
+		mRotationLockTileProvider = rotationLockTileProvider;
+		mFlashlightTileProvider = flashlightTileProvider;
+		mLocationTileProvider = locationTileProvider;
+		mCastTileProvider = castTileProvider;
+		mHotspotTileProvider = hotspotTileProvider;
+		mUserTileProvider = userTileProvider;
+		mBatterySaverTileProvider = batterySaverTileProvider;
+		mDataSaverTileProvider = dataSaverTileProvider;
+		mNightDisplayTileProvider = nightDisplayTileProvider;
+		mNfcTileProvider = nfcTileProvider;
+		mMemoryTileProvider = memoryTileProvider;
+		mUiModeNightTileProvider = uiModeNightTileProvider;
+		mPowerShareTileProvider = powerShareTileProvider;
+		mVpnTileProvider = vpnTileProvider;
+		mSoundSearchTileProvider = soundSearchTileProvider;
+		mMusicTileProvider = musicTileProvider;
+		mAdbOverNetworkProvider = adbOverNetworkProvider;
+		mHeadsUpTileProvider = headsUpTileProvider;
+		mScreenRecordTileProvider = screenRecordTileProvider;
+		mSyncTileProvider = syncTileProvider;
+		mScreenshotTileProvider = screenshotTileProvider;
+		mLteTileProvider = lteTileProvider;
+		mDataSwitchTileProvider = dataSwitchTileProvider;
+		mUsbTetherTileProvider = usbTetherTileProvider;
+		mFPSInfoTileProvider = fpsInfoTileProvider;
+	    }
 
     public void setHost(QSTileHost host) {
         mHost = host;
@@ -243,7 +247,9 @@ public class QSFactoryImpl implements QSFactory {
                 return mDataSwitchTileProvider.get();
             case "usb_tether":
                 return mUsbTetherTileProvider.get();
-	}
+            case "fpsinfo":
+                return mFPSInfoTileProvider.get();
+        }
 
         // Intent tiles.
         if (tileSpec.startsWith(IntentTile.PREFIX)) return IntentTile.create(mHost, tileSpec);
