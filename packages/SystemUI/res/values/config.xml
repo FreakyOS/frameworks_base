@@ -117,7 +117,7 @@
 
     <!-- Tiles native to System UI. Order should match "quick_settings_tiles_default" -->
     <string name="quick_settings_tiles_stock" translatable="false">
-        wifi,cell,battery,dnd,flashlight,rotation,bt,airplane,nfc,location,hotspot,inversion,saver,dark,work,cast,night,vpn,soundsearch,music,adb_network,heads_up,screenrecord,sync,screenshot,lte,dataswitch,usb_tether
+        wifi,cell,battery,dnd,flashlight,rotation,bt,airplane,nfc,location,hotspot,inversion,saver,dark,work,cast,night,vpn,soundsearch,music,adb_network,heads_up,screenrecord,sync,screenshot,lte,dataswitch,usb_tether,fpsinfo
     </string>
 
     <!-- The tiles to display in QuickSettings -->
@@ -512,5 +512,8 @@
 
     <!--  Flag to turn on the rendering of the above path or not  -->
     <bool name="config_enableDisplayCutoutProtection">false</bool>
+
+    <!-- FPSInfoService FPS node file path -->
+    <string name="config_fpsInfoSysNode" translatable="false"></string>
 
 </resources>
