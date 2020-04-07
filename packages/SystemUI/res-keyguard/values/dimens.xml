@@ -81,4 +81,5 @@
 
     <!-- The translation for disappearing security views after having solved them. -->
     <dimen name="disappear_y_translation">-32dp</dimen>
+   <dimen name="clock_oronos_outline_size">4dp</dimen>
 </resources>
