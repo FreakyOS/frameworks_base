@@ -4728,6 +4728,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_SHOW),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.TINT_QS_TILES),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4736,6 +4739,10 @@ public class StatusBar extends SystemUI implements DemoMode,
             if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_SHOW))) {
                 updateNavigationBar();
+            } else if (uri.equals(Settings.System.getUriFor(Settings.System.TINT_QS_TILES))) {
+                if (mQSPanel != null) {
+                    mQSPanel.getHost().reloadAllTiles();
+                }
             }
         }
 
