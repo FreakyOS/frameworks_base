@@ -67,6 +67,11 @@ LOCAL_REQUIRED_MODULES := \
 	FontGoogleSansOverlay \
 	FontRubikRubikOverlay \
         FontSlateForOnePlusOverlay \
+        FontCircularStdOverlay \
+	FontTinkerbell \
+	FontLinotte \
+	FontCagliostroSourceOverlay \
+	FontLGSmartGothicSourceOverlay \
 	IconPackCircularAndroidOverlay \
 	IconPackCircularPixelLauncherOverlay \
 	IconPackCircularPixelThemePickerOverlay \
