@@ -49,7 +49,7 @@ import javax.inject.Singleton;
 
 import com.android.internal.util.custom.recorder.RecorderConstants;
 
-import com.android.internal.ancient.screenshot.StitchImageUtility;
+import com.android.internal.freaky.screenshot.StitchImageUtility;
 
 /** Platform implementation of the cast controller. **/
 @Singleton
