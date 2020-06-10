@@ -13,7 +13,7 @@
  * if not, see <http://www.gnu.org/licenses>.
  */
 
-package com.android.internal.ancient.screenshot;
+package com.android.internal.freaky.screenshot;
 
 import android.content.ComponentName;
 import android.content.Context;
