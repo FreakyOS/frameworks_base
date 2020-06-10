@@ -104,7 +104,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import com.android.internal.ancient.screenshot.StitchImageUtility;
+import com.android.internal.freaky.screenshot.StitchImageUtility;
 
 /** Manages uri grants. */
 public class UriGrantsManagerService extends IUriGrantsManager.Stub {

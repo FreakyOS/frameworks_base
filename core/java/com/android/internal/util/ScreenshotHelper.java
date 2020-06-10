@@ -16,7 +16,7 @@ import android.os.UserHandle;
 import android.util.Log;
 import android.view.WindowManager;
 
-import com.android.internal.ancient.screenshot.StitchImageUtility;
+import com.android.internal.freaky.screenshot.StitchImageUtility;
 
 import java.util.function.Consumer;
 
