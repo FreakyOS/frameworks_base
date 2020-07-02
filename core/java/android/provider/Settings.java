@@ -5267,6 +5267,22 @@ public final class Settings {
          */
         public static final String GLOBAL_ACTIONS_LOCKDOWN = "global_actions_lockdown";
 
+	/**
+         * System-wide switch style
+         * 0 = Default
+         * 1 = OnePlus
+         * 2 = Narrow
+         * 3 = Contained
+         * 4 = Telegram
+         * 5 = Md2
+         * 6 = Retro
+         * @hide
+         */
+        public static final String SWITCH_STYLE = "switch_style";
+        /** @hide */
+        private static final Validator SWITCH_STYLE_VALIDATOR =
+                new SettingsValidators.InclusiveIntegerRangeValidator(0, 6);
+
         /**
          * Whether to display airplane in the power menu
          *
@@ -5419,6 +5435,7 @@ public final class Settings {
             GESTURE_PILL_TOGGLE,
             BACK_GESTURE_HAPTIC,
             STATUS_BAR_CUSTOM_HEADER_HEIGHT,
+            SWITCH_STYLE,
         };
 
         /**
@@ -5766,6 +5783,7 @@ public final class Settings {
             VALIDATORS.put(BACK_GESTURE_HAPTIC, BACK_GESTURE_HAPTIC_VALIDATOR);
             VALIDATORS.put(STATUS_BAR_CUSTOM_HEADER_HEIGHT, STATUS_BAR_CUSTOM_HEADER_HEIGHT_VALIDATOR);
             VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
+            VALIDATORS.put(SWITCH_STYLE, SWITCH_STYLE_VALIDATOR);
         }
 
         /**
