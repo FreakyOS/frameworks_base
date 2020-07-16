@@ -129,4 +129,11 @@
     <!-- Whether device uses linear screen brightness slider -->
     <java-symbol type="bool" name="config_linearBrightnessSlider" />
 
+    
+    <!-- Light / Regular style fonts -->
+    <java-symbol type="string" name="config_lightFontFamily" />
+    <java-symbol type="string" name="config_regularFontFamily" />
+    <java-symbol type="string" name="config_headlineFontFamilyMedium" />
+    <java-symbol type="string" name="config_bodyFontFamily" />
+    <java-symbol type="string" name="config_bodyFontFamilyMedium" />
 </resources>
