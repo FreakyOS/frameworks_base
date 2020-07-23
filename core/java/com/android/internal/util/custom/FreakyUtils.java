@@ -93,6 +93,19 @@ public class FreakyUtils {
         }
     }
 
+    public static boolean isPackageAvailableMethod(Context context, String packageName) {
+        Context mContext = context;
+        final PackageManager pm = mContext.getPackageManager();
+        try {
+            pm.getPackageInfo(packageName, PackageManager.GET_ACTIVITIES);
+            int enabled = pm.getApplicationEnabledSetting(packageName);
+            return enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED &&
+                enabled != PackageManager.COMPONENT_ENABLED_STATE_DISABLED_USER;
+        } catch (NameNotFoundException e) {
+            return false;
+        }
+    }
+
     public static void switchScreenOff(Context ctx) {
         PowerManager pm = (PowerManager) ctx.getSystemService(Context.POWER_SERVICE);
         if (pm!= null) {
