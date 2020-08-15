@@ -5340,6 +5340,15 @@ public final class Settings {
         public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
 
         /**
+         * Controls whether to center R style notification headers
+         * by.tikkiX2
+         * @hide
+         */
+        public static final String CENTER_NOTIFICATION_HEADERS = "center_notification_headers";
+
+        private static final Validator CENTER_NOTIFICATION_HEADERS_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5436,6 +5445,7 @@ public final class Settings {
             BACK_GESTURE_HAPTIC,
             STATUS_BAR_CUSTOM_HEADER_HEIGHT,
             SWITCH_STYLE,
+            CENTER_NOTIFICATION_HEADERS,
         };
 
         /**
@@ -5784,6 +5794,7 @@ public final class Settings {
             VALIDATORS.put(STATUS_BAR_CUSTOM_HEADER_HEIGHT, STATUS_BAR_CUSTOM_HEADER_HEIGHT_VALIDATOR);
             VALIDATORS.put(FOD_GESTURE, FOD_GESTURE_VALIDATOR);
             VALIDATORS.put(SWITCH_STYLE, SWITCH_STYLE_VALIDATOR);
+            VALIDATORS.put(CENTER_NOTIFICATION_HEADERS, CENTER_NOTIFICATION_HEADERS_VALIDATOR);
         }
 
         /**
