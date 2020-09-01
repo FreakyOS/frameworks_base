@@ -624,6 +624,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         public void onChange(boolean selfChange) {
             updateSettings();
         }
+    }
 
     private void updateHeaderImage() {
         mHeaderImageEnabled = Settings.System.getIntForUser(getContext().getContentResolver(),
