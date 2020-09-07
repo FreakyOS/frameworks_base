@@ -125,8 +125,10 @@
     <java-symbol type="bool" name="config_hasAlertSlider" />
     <java-symbol type="integer" name="config_alertSliderLocation" />
 
-
     <!-- Whether device uses linear screen brightness slider -->
     <java-symbol type="bool" name="config_linearBrightnessSlider" />
+    
+    <!-- Enable face auth only when swiping security view -->
+    <java-symbol type="bool" name="config_faceAuthOnlyOnSecurityView" />
 
 </resources>
