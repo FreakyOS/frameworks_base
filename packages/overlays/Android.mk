@@ -94,20 +94,10 @@ LOCAL_REQUIRED_MODULES := \
         IconShapePebbleOverlay \
         IconShapeTaperedRectOverlay \
         IconShapeVesselOverlay \
-        PrimaryColorOneplusDarkOverlay \
-        PrimaryColorAOSiPNatureOverlay \
-        PrimaryColorAOSiPOceanOverlay \
         PrimaryColorCharcoalBlackOverlay \
         PrimaryColorLeadBlackOverlay \
-        PrimaryEtherealOverlay \
-        PrimaryColorDerpClearOverlay \
-        PrimaryColorSolarizedDarkOverlay \
-        PrimaryFlameOverlay \
         PrimaryColorDarkBlueOverlay \
-        PrimaryColorEyeSootherOverlay \
-        PrimaryColorBlissClearOverlay \
         PrimaryColorBlissBlackOverlay \
-        PrimaryEthereal2Overlay \
 	NavigationBarMode3ButtonOverlay \
 	NavigationBarMode2ButtonOverlay \
 	NavigationBarModeGesturalOverlay \
